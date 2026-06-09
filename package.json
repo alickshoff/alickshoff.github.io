@@ -1,0 +1,77 @@
+{
+  "name": "lampa-entertainment-plugin",
+  "version": "1.0.0",
+  "description": "Полнофункциональный плагин для приложения Lampa с поддержкой фильмов, сериалов, IPTV и контента 18+",
+  "main": "lampa-plugin.js",
+  "types": "lampa-plugin.d.ts",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "docs": "jsdoc -c jsdoc.json"
+  },
+  "keywords": [
+    "lampa",
+    "plugin",
+    "movies",
+    "tv",
+    "series",
+    "iptv",
+    "streaming",
+    "video",
+    "player",
+    "entertainment"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/lampa-entertainment-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/lampa-entertainment-plugin/issues"
+  },
+  "homepage": "https://github.com/yourusername/lampa-entertainment-plugin#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.0",
+    "@babel/preset-env": "^7.22.0",
+    "babel-loader": "^9.1.0",
+    "eslint": "^8.40.0",
+    "jest": "^29.5.0",
+    "jsdoc": "^4.0.0",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "lampa-plugin.js",
+    "lampa-plugin.css",
+    "plugin-utils.js",
+    "config.json",
+    "README.md",
+    "QUICKSTART.md"
+  ],
+  "browser": {
+    "./plugin-utils.js": "./plugin-utils.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./lampa-plugin.js",
+      "require": "./lampa-plugin.js"
+    },
+    "./utils": {
+      "import": "./plugin-utils.js",
+      "require": "./plugin-utils.js"
+    },
+    "./styles": "./lampa-plugin.css"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "tests"
+  }
+}
