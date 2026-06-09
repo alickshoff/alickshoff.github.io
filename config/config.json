@@ -1,0 +1,414 @@
+{
+  "plugin": {
+    "name": "entertainment-plugin",
+    "version": "1.0.0",
+    "author": "Your Name",
+    "description": "Полнофункциональный плагин для просмотра фильмов, сериалов, IPTV и контента 18+"
+  },
+  "sources": {
+    "movies": [
+      {
+        "id": "tmdb",
+        "enabled": true,
+        "name": "The Movie Database",
+        "apiUrl": "https://api.themoviedb.org/3",
+        "apiKey": "YOUR_TMDB_API_KEY_HERE",
+        "categories": [
+          "action",
+          "comedy",
+          "drama",
+          "horror",
+          "scifi",
+          "thriller"
+        ],
+        "sortOptions": [
+          "popularity",
+          "rating",
+          "release_date",
+          "revenue"
+        ]
+      },
+      {
+        "id": "omdb",
+        "enabled": false,
+        "name": "Open Movie Database",
+        "apiUrl": "http://www.omdbapi.com",
+        "apiKey": "YOUR_OMDB_API_KEY_HERE",
+        "searchLimit": 20
+      },
+      {
+        "id": "custom",
+        "enabled": false,
+        "name": "Custom API",
+        "apiUrl": "https://your-api.com/v1",
+        "apiKey": "YOUR_CUSTOM_API_KEY",
+        "headers": {
+          "Authorization": "Bearer token_here",
+          "Content-Type": "application/json"
+        }
+      }
+    ],
+    "series": [
+      {
+        "id": "tmdb_series",
+        "enabled": true,
+        "name": "TMDB Series",
+        "apiUrl": "https://api.themoviedb.org/3/tv",
+        "apiKey": "YOUR_TMDB_API_KEY_HERE",
+        "genres": [
+          "drama",
+          "comedy",
+          "action",
+          "thriller",
+          "scifi",
+          "animation"
+        ]
+      },
+      {
+        "id": "tvmaze",
+        "enabled": false,
+        "name": "TV Maze",
+        "apiUrl": "https://api.tvmaze.com",
+        "apiKey": "free",
+        "features": [
+          "episode_info",
+          "cast_info",
+          "ratings"
+        ]
+      }
+    ],
+    "iptv": [
+      {
+        "id": "iptv_m3u",
+        "enabled": true,
+        "name": "Main IPTV Playlist",
+        "playlistUrl": "http://example.com/playlist.m3u8",
+        "categories": [
+          "sports",
+          "movies",
+          "series",
+          "kids",
+          "news",
+          "music"
+        ],
+        "timeout": 5000,
+        "retryAttempts": 3,
+        "refreshInterval": 3600000
+      },
+      {
+        "id": "iptv_m3u_backup",
+        "enabled": false,
+        "name": "Backup IPTV",
+        "playlistUrl": "http://backup.example.com/playlist.m3u8",
+        "timeout": 5000
+      },
+      {
+        "id": "custom_iptv",
+        "enabled": false,
+        "name": "Custom IPTV Server",
+        "playlistUrl": "http://your-iptv-server.com/api/channels",
+        "apiHeaders": {
+          "Authorization": "Bearer your_token"
+        },
+        "parseFormat": "json"
+      }
+    ],
+    "adult": [
+      {
+        "id": "adult_content",
+        "enabled": false,
+        "name": "Adult Content Source",
+        "apiUrl": "https://adult-api.example.com",
+        "apiKey": "YOUR_KEY",
+        "requiresAuthentication": true,
+        "requiresPin": true,
+        "parentalControl": true
+      }
+    ],
+    "trending": [
+      {
+        "id": "trending_movies",
+        "enabled": true,
+        "name": "Trending Movies",
+        "apiUrl": "https://api.themoviedb.org/3/trending/movie/week",
+        "apiKey": "YOUR_TMDB_API_KEY_HERE"
+      },
+      {
+        "id": "trending_series",
+        "enabled": true,
+        "name": "Trending Series",
+        "apiUrl": "https://api.themoviedb.org/3/trending/tv/week",
+        "apiKey": "YOUR_TMDB_API_KEY_HERE"
+      },
+      {
+        "id": "top_rated",
+        "enabled": true,
+        "name": "Top Rated",
+        "apiUrl": "https://api.themoviedb.org/3/discover/movie?sort_by=vote_average.desc",
+        "apiKey": "YOUR_TMDB_API_KEY_HERE"
+      }
+    ]
+  },
+  "settings": {
+    "ui": {
+      "theme": "dark",
+      "primaryColor": "#00d4ff",
+      "cardSize": "medium",
+      "itemsPerPage": 20,
+      "layout": "grid",
+      "showPoster": true,
+      "showRating": true,
+      "showYear": true
+    },
+    "video": {
+      "defaultQuality": "1080p",
+      "availableQualities": [
+        "480p",
+        "720p",
+        "1080p",
+        "4K"
+      ],
+      "autoSelectQuality": false,
+      "preferredCodec": "h264",
+      "enableHardwareAcceleration": true
+    },
+    "subtitles": {
+      "enabled": true,
+      "autoLoad": true,
+      "defaultLanguage": "ru",
+      "availableLanguages": [
+        "ru",
+        "en",
+        "uk",
+        "de",
+        "fr"
+      ],
+      "fontSize": 14,
+      "position": "bottom",
+      "backgroundColor": "rgba(0,0,0,0.8)",
+      "textColor": "#ffffff"
+    },
+    "playback": {
+      "startFromLastPosition": true,
+      "rememberProgress": true,
+      "autoPlay": false,
+      "allowSkipIntro": true,
+      "introDuration": 90,
+      "resumeThreshold": 85,
+      "bufferingTimeout": 10000
+    },
+    "cache": {
+      "enabled": true,
+      "maxSize": 500,
+      "maxItems": 1000,
+      "expirationTime": 3600000,
+      "compressionEnabled": true,
+      "storageBackend": "indexeddb"
+    },
+    "performance": {
+      "lazyLoadImages": true,
+      "imageQuality": "medium",
+      "preloadNextPage": true,
+      "maxConcurrentRequests": 5,
+      "requestTimeout": 15000,
+      "connectionPoolSize": 10
+    },
+    "history": {
+      "enabled": true,
+      "maxItems": 500,
+      "clearOnExit": false,
+      "autoSave": true,
+      "saveInterval": 30000
+    },
+    "search": {
+      "enabled": true,
+      "minChars": 2,
+      "debounceTime": 300,
+      "maxResults": 50,
+      "searchFields": [
+        "title",
+        "description",
+        "cast"
+      ]
+    },
+    "notifications": {
+      "enabled": true,
+      "position": "top-right",
+      "duration": 3000,
+      "showErrors": true,
+      "showWarnings": true,
+      "showInfo": true
+    }
+  },
+  "security": {
+    "parentalControl": {
+      "enabled": false,
+      "pin": "1234",
+      "restrictedCategories": [
+        "adult",
+        "horror"
+      ],
+      "requirePinForAdultContent": true,
+      "requirePinForDownload": true,
+      "maxWatchTimePerDay": 180,
+      "lockdownTime": {
+        "start": "22:00",
+        "end": "08:00"
+      }
+    },
+    "privacy": {
+      "anonymizeRequests": false,
+      "useVPN": false,
+      "trackingEnabled": false,
+      "analyticsEnabled": false,
+      "dataRetention": 30
+    },
+    "auth": {
+      "enabled": false,
+      "provider": "none",
+      "requireLogin": false,
+      "sessionTimeout": 3600000,
+      "rememberMe": true
+    }
+  },
+  "network": {
+    "proxy": {
+      "enabled": false,
+      "host": "",
+      "port": 8080,
+      "username": "",
+      "password": ""
+    },
+    "headers": {
+      "User-Agent": "Lampa-Plugin/1.0",
+      "Accept-Language": "ru-RU,ru;q=0.9",
+      "Referer": "https://lampa.app"
+    },
+    "connectionRetry": {
+      "maxAttempts": 3,
+      "delayMs": 1000,
+      "backoffMultiplier": 2
+    }
+  },
+  "logging": {
+    "enabled": true,
+    "level": "info",
+    "maxLogSize": 10485760,
+    "logToFile": false,
+    "logFilePath": "./logs/plugin.log",
+    "debugMode": false
+  },
+  "integrations": {
+    "trakt": {
+      "enabled": false,
+      "clientId": "",
+      "clientSecret": "",
+      "redirectUri": "http://localhost:8000/auth/trakt/callback",
+      "scopes": [
+        "user",
+        "history",
+        "lists"
+      ]
+    },
+    "plex": {
+      "enabled": false,
+      "serverUrl": "",
+      "token": "",
+      "username": ""
+    },
+    "kodi": {
+      "enabled": false,
+      "host": "localhost",
+      "port": 8080,
+      "username": "",
+      "password": ""
+    },
+    "discord": {
+      "enabled": false,
+      "clientId": "",
+      "showStatus": false,
+      "updateInterval": 15000
+    }
+  },
+  "filters": {
+    "movies": {
+      "genres": [
+        "Action",
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Family",
+        "Fantasy",
+        "History",
+        "Horror",
+        "Music",
+        "Mystery",
+        "Romance",
+        "Science Fiction",
+        "Thriller",
+        "War",
+        "Western"
+      ],
+      "years": {
+        "min": 1900,
+        "max": 2024,
+        "step": 1
+      },
+      "ratings": {
+        "min": 0,
+        "max": 10,
+        "step": 0.1
+      }
+    },
+    "series": {
+      "genres": [
+        "Action",
+        "Adventure",
+        "Animation",
+        "Comedy",
+        "Crime",
+        "Documentary",
+        "Drama",
+        "Family",
+        "Fantasy",
+        "History",
+        "Horror",
+        "Kids",
+        "Mystery",
+        "News",
+        "Reality",
+        "Romance",
+        "Science Fiction",
+        "Thriller",
+        "War",
+        "Western"
+      ],
+      "statuses": [
+        "Returning Series",
+        "Planned",
+        "In Production",
+        "Ended",
+        "Cancelled"
+      ]
+    }
+  },
+  "recommendations": {
+    "enabled": true,
+    "algorithm": "collaborative",
+    "maxItems": 10,
+    "baseOnWatchHistory": true,
+    "baseOnRatings": true,
+    "baseOnGenres": true,
+    "similarityThreshold": 0.7
+  },
+  "updates": {
+    "checkForUpdates": true,
+    "autoUpdate": false,
+    "checkInterval": 86400000,
+    "releaseChannel": "stable",
+    "notifyOnUpdate": true
+  }
+}
